@@ -1,0 +1,33 @@
+--
+- hosts: compute
+  remote_user: denzuko
+  sudo: yes
+  gather_facts: no
+  vars_prompt:
+    - name: "floating_range"
+      prompt: "Which internal unused ip range on the local network to allocate? [CIDR]"
+    - name: "fix_range"
+      prompt: "Which private ip range to allocate for instances?  [CIDR]"
+    - name: "fix_network_size"
+      prompt: "How many addresses is that?  [INT]"
+    - name: "flat_interface"
+      prompt: "Which primary interface to use?  [STR]"
+    - name: "admin_secret"
+      prompt: "Administrative password?  [STR:16]"
+    - name: "broker_secret"
+      prompt: "Message Queue password?  [STR:16]"
+    - name: "database_secret"
+      prompt: "Database password?  [STR:16]"
+    - name: "service_secret"
+      prompt: "Web service password?  [STR:16]"
+
+  roles:
+    - { role: denzuko-ansible-roles.openstack, config: {
+        floating_range: "{{floating_range}}",
+        fix_network_size: "{{fix_network_size}}",
+        fix_range: "{{fix_range}}",
+        flat_interface: "{{flat_interface}}",
+        admin_secret: "{{admin_secret}}",
+        broker_secret: "{{broker_secret}}",
+        database_secret: "{{database_secret}}"
+      }}
