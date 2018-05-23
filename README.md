@@ -15,6 +15,8 @@ OpenStack + Docker Swarm on CentOS Server Playbooks, Wiki, and Issue tracker
 
 ## Options
 
+| | |
+|---|---|
 | HOSTS | Host values for ssh config (defaults: "`192.168.*`") |
 | RUSER | Remote user name to connect with |
 | JUMPBOX | Remote jump box server address |
