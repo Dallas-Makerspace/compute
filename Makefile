@@ -1,5 +1,5 @@
 HOSTS	::= 192.168.*
-RUSER	::= adm_denzuko
+RUSER	::= adm_$(USERNAME)
 JUMPBOX	::= physical.dallasmakerspace.org
 
 define SSHCONFIG
@@ -10,7 +10,7 @@ Host $(HOSTS)
     ControlMaster auto                                                                                                                     
     ControlPath ~/.ssh/ansible-%r@%h:%p                                                                                                    
     ControlPersist 8h                                                                                                                      
-    User denzuko
+    User $(USERNAME)
 endef
 export SSHCONFIG
 
